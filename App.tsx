@@ -12,9 +12,9 @@ import theme from './src/global/styles/theme'
 import Dashboard from './src/screens/Dashboard/Dashboard';
 
 
-export default function App(): JSX.Element {
+export default function App() {
   SplashScreen.preventAutoHideAsync();
-  let [fontsLoaded] = useFonts({
+  const [fontsLoaded] = useFonts({
     Poppins_400Regular, 
     Poppins_500Medium, 
     Poppins_700Bold
