@@ -1,7 +1,6 @@
 import React from 'react';
-import { RFValue } from 'react-native-responsive-fontsize';
 import HighlightCard from '../../components/HighlightCard';
-import TransactionCard from '../../components/TransactionCard';
+import { TransactionCard, TransactionCardProps } from '../../components/TransactionCard';
 
 import {
   Container,
@@ -15,10 +14,52 @@ import {
   Icon,
   HighlightCards,
   Transactions,
-  Title
+  Title,
+  TransactionList
 } from './styles';
 
+
+ export interface DataListProps extends TransactionCardProps {
+  id: string;
+}
+
 const Dashboard = () => {
+  const data: DataListProps[] = [
+    {
+        id: '1',
+        title: "Desenvolvimento de site",
+        type: 'credited',
+        amount: "R$ 12.000,00",
+        category: {
+          name: 'Vendas',
+          icon: 'dollar-sign'
+        },
+        createdAt: "13/04/2020"
+    },
+    {
+        id: '2',
+        title: "Hamburgueria Pizzy",
+        type: 'debited',
+        amount: "R$ 59,00",
+        category: {
+          name: 'Alimentação',
+          icon: 'coffee'
+        },
+        createdAt: "10/04/2020"
+    },
+    {
+        id: '3',
+        title: "Aluguel do apartamento",
+        type: 'debited',
+        amount: "R$ 1.200,00",
+        category: {
+          name: 'Casa',
+          icon: 'home'
+        },
+        createdAt: "27/03/2020"
+    }
+  ];
+
   return(
     <Container>
       <Header>
@@ -44,19 +85,10 @@ const Dashboard = () => {
 
       <Transactions>
         <Title>Listagem</Title>
-        <TransactionCard
-          title="Desenvolvimento de site"
-          amount="R$ 12.000,00"
-          categoryName="Vendas"
-          createdAt="10/04/2020"
-          icon="dollar-sign"
-        />
-        <TransactionCard
-          title="Hamburgueria Pizzy"
-          amount="- R$ 59,00"
-          categoryName="Alimentação"
-          createdAt="10/04/2020"
-          icon="coffee"
+        <TransactionList
+         data={data}
+         keyExtractor={item => item.id}
+         renderItem={({item}) => <TransactionCard data={item} />}
         />
       </Transactions>
 

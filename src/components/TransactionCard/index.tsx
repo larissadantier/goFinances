@@ -10,31 +10,40 @@ import {
   CreatedAt
 } from "./styles";
 
-interface Props {
-  title: string;
-  amount: string;
-  categoryName: string;
-  createdAt: string;
+interface Category {
+  name: string;
   icon: string;
 }
 
+export interface TransactionCardProps {
+  type: 'credited' | 'debited'
+  title: string;
+  amount: string;
+  createdAt: string;
+  category: Category;
+}
 
-const TransactionCard = ({title, icon, amount, categoryName, createdAt}: Props) => {
+interface Props {
+  data: TransactionCardProps;
+}
+
+export function TransactionCard ({data}: Props) {
   return (
     <Container>
-        <Title>{title}</Title>
-        <Amount>{amount}</Amount>
+        <Title>{data.title}</Title>
+        <Amount type={data.type}>
+          {data.type === 'debited' && '- '}
+          {data.amount}
+        </Amount>
 
       <Footer>
         <Category>
-          <Icon name={icon}/>
-          <CategoryName>{categoryName}</CategoryName>
+          <Icon name={data.category.icon}/>
+          <CategoryName>{data.category.name}</CategoryName>
         </Category>
 
-        <CreatedAt>{createdAt}</CreatedAt>
+        <CreatedAt>{data.createdAt}</CreatedAt>
       </Footer>
     </Container>
   );
 };
-
-export default TransactionCard;

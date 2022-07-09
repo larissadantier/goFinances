@@ -3,13 +3,16 @@ import { AnyStyledComponent } from "styled-components";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { Feather } from "@expo/vector-icons";
 
+interface TransactionProps {
+  type: 'credited' | 'debited'
+}
+
 export const Container = styled.View`
  background-color: ${({theme}) => theme.colors.shape};
  padding: 17px 24px;
- margin-top: 16px;
+ margin: 12px 0;
  border-radius: 5px;
 `;
-
 
 export const Title = styled.Text`
   color: ${({theme}) => theme.colors.title};
@@ -17,8 +20,12 @@ export const Title = styled.Text`
   font-size: ${RFValue(14)}px;
 `;
 
-export const Amount = styled.Text`
-  color: ${({theme}) => theme.colors.success.main};
+export const Amount = styled.Text<TransactionProps>`
+  color: ${({type, theme}) =>
+    type === 'credited'
+    ? theme.colors.success.main
+    : theme.colors.attention.main
+  };
   font-family: ${({theme}) => theme.fonts.regular};
   font-size: ${RFValue(20)}px;
   margin-top: 2px;
