@@ -1,8 +1,9 @@
 import styled from "styled-components/native";
-import { FlatList, FlatListProps } from 'react-native'
 import { AnyStyledComponent } from "styled-components";
+import { FlatList, FlatListProps } from 'react-native';
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { getStatusBarHeight, getBottomSpace } from "react-native-iphone-x-helper";
+
 import { Feather } from "@expo/vector-icons";
 
 import { DataListProps } from '.'
