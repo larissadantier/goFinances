@@ -13,10 +13,11 @@ export default {
       main: '#E83F5B',
       light: 'rgba(232, 63, 91, 0.5)',
     },
+    black: "#000000",
     shape: '#FFFFFF',
     title: '#363F5F',
     text: '#969CB2',
-    background:'#F0F2F5'
+    background: '#F0F2F5'
   },
   fonts: {
     regular: 'Poppins_400Regular',
